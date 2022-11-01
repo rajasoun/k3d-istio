@@ -1,0 +1,36 @@
+# k3d configuration file
+
+apiVersion: k3d.io/v1alpha4 
+kind: Simple 
+metadata:
+  name: spike # name that you want to give to your cluster (will still be prefixed with `k3d-`)
+
+servers: 1  # one server node for the control plane.
+agents: 2   # two nodes to run containers 
+
+kubeAPI: 
+  host: "k3d.local"   # important for the `server` setting in the kubeconfig
+  hostIP: "127.0.0.1" # where the Kubernetes API will be listening on
+  hostPort: "6443"    # where the Kubernetes API listening port will be mapped to on your host system
+image: rancher/k3s:latest
+
+ports:
+  - port: 80:80 # forward requests from port 8080 to 80 in the k8 cluster. Load balancer (Docker Port)
+    nodeFilters:
+      - loadbalancer
+
+  - port: 443:443 # forward requests from port 9443 to 443 in the k8 cluster. Load balancer (Docker Port) - HTTPS
+    nodeFilters:
+      - loadbalancer
+
+options:
+  k3s:
+    extraArgs:
+      - arg: --disable=traefik
+        nodeFilters:
+          - server:*
+
+  
+
+
+
