@@ -1,5 +1,7 @@
 # Getting Started
 
+Deploy a local K3D Kubernetes development cluster that will use Istio as the service mesh.
+
 ## Pre Requisites 
 
 1. **[Docker Desktop](https://www.docker.com/products/docker-desktop/)** is an easy-to-install application for your Mac, Linux, or Windows environment that enables you to build and share containerized applications and microservices.
