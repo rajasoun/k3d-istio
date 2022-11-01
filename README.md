@@ -53,7 +53,9 @@ istioctl analyze -A
 ## Apps
 
 Hello World
-Refernce: https://github.com/istio/istio/tree/master/samples/helloworld
+Refernce: 
+1. https://github.com/istio/istio/tree/master/samples/helloworld
+1. https://istio.io/latest/docs/tasks/traffic-management/ingress/gateway-api/
 
 Provision App 
 
@@ -61,10 +63,32 @@ Provision App
 RESOURCES_PATH=apps
 kubectl create namespace apps
 kubectl apply  -f $RESOURCES_PATH/helloworld.yaml -n apps
+```
+
+There are two ways to expose Apps 
+
+1. Expose App using Istio Gateway
+
+```sh
+RESOURCES_PATH=apps
 kubectl apply  -f $RESOURCES_PATH/helloworld-gateway.yaml -n apps
-kubectl get pods -n apps
 kubectl wait --for=condition=Ready pods --all -n apps 
+```
+
+OR 
+
+2. Expose App using Kubernetes Gateway API
+
+```sh
+RESOURCES_PATH=apps
+kubectl delete -f $RESOURCES_PATH/helloworld-gateway.yaml -n apps
+kubectl apply  -f $RESOURCES_PATH/helloworld-gateway-api.yaml -n apps
+kubectl wait --for=condition=Ready pods --all -n apps 
+```
+
+Test App
+
+```sh
 source scripts/lib/gateway.sh
 curl http://$GATEWAY_URL/hello
 ```
-
