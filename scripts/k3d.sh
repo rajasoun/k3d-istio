@@ -28,8 +28,6 @@ function teardown(){
     try k3d cluster delete $CLUSTER_NAME
     remove_host_entry "k3d.local"
     #try k3d cluster delete -a
-    try brew uninstall k3d k9s 
-    brew cleanup
 }
 
 source "${SCRIPT_LIB_DIR}/lib/main.sh" $@
