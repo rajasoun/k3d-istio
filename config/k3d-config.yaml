@@ -3,7 +3,7 @@
 apiVersion: k3d.io/v1alpha4 
 kind: Simple 
 metadata:
-  name: spike # name that you want to give to your cluster (will still be prefixed with `k3d-`)
+  name: $CLUSTER_NAME # name that you want to give to your cluster (will still be prefixed with `k3d-`)
 
 servers: 1  # one server node for the control plane.
 agents: 2   # two nodes to run containers 

@@ -34,7 +34,7 @@ scripts/pre-requisites.sh setup
 Provision k3d cluster using [config/k3d-config.yaml](config/k3d-config.yaml)
 
 ```sh
-k3d cluster create --config "config/k3d-config.yaml" 
+scripts/k3d.sh setup
 source scripts/lib/tools.sh  
 kubectl wait --for=condition=Ready pods --all -n kube-system
 ```
@@ -50,10 +50,7 @@ k9s
 Provision istio 
 
 ```sh
-istioctl x precheck 
-istioctl install --set profile=default -y 
-kubectl label namespace default istio-injection=enabled
-istioctl analyze -A
+scripts/istio.sh setup
 ```
 
 

@@ -6,7 +6,12 @@ export CLUSTER_NAME=${CLUSTER_NAME:-"spike"}
 
 function setup(){
     # try k3d cluster create $CLUSTER_NAME --k3s-arg="--disable=traefik@server:*"
-    try k3d cluster create --config "config/k3d-config.yaml"
+    cat config/k3d-config.yaml | envsubst > /tmp/k3d-config.yaml
+    try k3d cluster create --config  /tmp/k3d-config.yaml
+    export KUBECONFIG=$(k3d kubeconfig write $CLUSTER_NAME)
+    echo "export KUBECONFIG=${KUBECONFIG}"
+    rm /tmp/k3d-config.yaml
+
     add_host_entry "127.0.0.1" "k3d.local"
     try source ${SCRIPT_LIB_DIR}/tools.sh
     
