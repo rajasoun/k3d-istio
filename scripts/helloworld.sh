@@ -11,6 +11,7 @@ function setup(){
     gateway_type="$2"
     echo "Gateway Type : $gateway_type"
     kubectl create namespace apps
+    kubectl label namespace apps istio-injection=enabled
     kubectl apply -f $RESOURCES_PATH/helloworld.yaml
 
     choice=$( tr '[:upper:]' '[:lower:]' <<<"$gateway_type" )
