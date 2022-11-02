@@ -10,7 +10,7 @@ function setup(){
     scripts/pre-requisites.sh setup
     scripts/k3d.sh setup 
     scripts/istio.sh setup
-    scripts/helloworld.sh setup
+    scripts/helloworld.sh setup istio-gateway
     end=$(date +%s)
     runtime=$((end-start))
     echo -e "${GREEN}Setup Successful | $(display_time $runtime) ${NC}" 
@@ -18,7 +18,7 @@ function setup(){
 
 function teardown(){
     start=$(date +%s)
-    scripts/helloworld.sh teardown
+    scripts/helloworld.sh teardown  istio-gateway
     scripts/istio.sh teardown
     scripts/k3d.sh teardown 
     scripts/pre-requisites.sh teardown
