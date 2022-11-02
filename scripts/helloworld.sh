@@ -16,14 +16,17 @@ function setup(){
     choice=$( tr '[:upper:]' '[:lower:]' <<<"$gateway_type" )
     case $choice in
         istio-gateway)
+            kubectl delete -f $RESOURCES_PATH/helloworld-gateway-api.yaml -n apps
+            istioctl install --set profile=default -y
             kubectl apply  -f $RESOURCES_PATH/helloworld-gateway.yaml -n apps
         ;;
         k8s-gateway)
+            kubectl delete -f $RESOURCES_PATH/helloworld-gateway.yaml -n apps
+            istioctl install --set profile=minimal -y
             kubectl apply  -f $RESOURCES_PATH/helloworld-gateway-api.yaml -n apps
         ;;
         *);;
     esac
-    kubectl get pods -n apps
     kubectl wait --for=condition=Ready pods --all -n apps 
     source scripts/lib/gateway.sh
     curl http://$GATEWAY_URL/hello
