@@ -18,10 +18,14 @@ function check_for_docker_desktop(){
 function setup(){
     check_for_docker_desktop
     try brew install k3d k9s helm kubectl
+    # try wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+    curl -sL https://istio.io/downloadIstioctl | sh -
+    source "${SCRIPT_LIB_DIR}/lib/tools.sh"
     echo -e "${GREEN}Pre Requisites Installation Sucessfull${NC}"
 }
 
 function teardown(){
+    rm -fr $HOME/.istioctl
     try brew uninstall k3d k9s helm kubectl
     brew cleanup
     echo -e "${GREEN}Pre Requisites Teardown Installation Sucessfull${NC}"

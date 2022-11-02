@@ -22,6 +22,13 @@ scripts/all.sh setup
 
 ## Manual Steps for Learning 
 
+## Pre Requisites 
+
+Install k3d, istio, kubectl, helm. k9s
+```sh
+scripts/pre-requisites.sh setup
+```
+
 ## k3d
 
 Provision k3d cluster using [config/k3d-config.yaml](config/k3d-config.yaml)
@@ -71,6 +78,7 @@ There are two ways to expose Apps
 
 ```sh
 RESOURCES_PATH=apps
+kubectl delete -f $RESOURCES_PATH/helloworld-gateway-api.yaml -n apps
 kubectl apply  -f $RESOURCES_PATH/helloworld-gateway.yaml -n apps
 kubectl wait --for=condition=Ready pods --all -n apps 
 ```
@@ -81,6 +89,9 @@ OR
 
 ```sh
 RESOURCES_PATH=apps
+kubectl get crd gateways.gateway.networking.k8s.io || \
+    { kubectl kustomize "github.com/kubernetes-sigs/gateway-api/config/crd?ref=v0.5.0" | kubectl apply -f -; }
+istioctl install --set profile=minimal -y
 kubectl delete -f $RESOURCES_PATH/helloworld-gateway.yaml -n apps
 kubectl apply  -f $RESOURCES_PATH/helloworld-gateway-api.yaml -n apps
 kubectl wait --for=condition=Ready pods --all -n apps 
