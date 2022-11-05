@@ -84,9 +84,9 @@ function pretty_print() {
 # Check if Mac
 function is_mac(){
     if [[ $OSTYPE == "darwin"* ]]; then
-        echo -e "Darwin OS Detected"
+        echo -e "${GREEN}Darwin OS Detected${NC}"
     else
-        echo -e "Darwin OS is required to Run brew"
+        echo -e "${RED}Darwin OS is required to Run brew${NC}"
         exit 1
     fi
 }
