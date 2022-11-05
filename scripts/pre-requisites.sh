@@ -4,27 +4,6 @@ SCRIPT_LIB_DIR="$(dirname "${BASH_SOURCE[0]}")"
 
 export CLUSTER_NAME=${CLUSTER_NAME:-"spike"}
 
-# Check if Mac
-function is_mac(){
-    if [[ $OSTYPE == "darwin"* ]]; then
-        echo -e "Darwin OS Detected"
-    else
-        echo -e "Darwin OS is required to Run brew"
-        exit 1
-    fi
-}
-
-function check_for_docker_desktop(){
-    if [[ -n "$(docker info --format '{{.OperatingSystem}}' | grep 'Docker Desktop')" ]]; then
-        echo -e "${GREEN}\nDocker Desktop found....${NC}"
-    else
-        echo -e "${RED}\nWARNING! Docker Desktop not installed:${NC}"
-        echo -e "${YELLOW}  * Install docker desktop from <https://docs.docker.com/docker-for-mac/install/>\n${NC}"
-        exit 1
-    fi
-
-}
-
 function install_apps(){
     pretty_print "Installing Package(s)..."
     PACKAGES=$(cat ${SCRIPT_LIB_DIR}/packages/brew.txt)
@@ -38,6 +17,7 @@ function uninstall_apps(){
 }
 
 function setup(){
+    is_mac
     check_for_docker_desktop
     try install_apps
     # try wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash

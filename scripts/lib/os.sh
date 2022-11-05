@@ -80,3 +80,25 @@ function get_ip_linux(){
 function pretty_print() {
   printf "\n%b\n" "$1"
 }
+
+# Check if Mac
+function is_mac(){
+    if [[ $OSTYPE == "darwin"* ]]; then
+        echo -e "Darwin OS Detected"
+    else
+        echo -e "Darwin OS is required to Run brew"
+        exit 1
+    fi
+}
+
+# Check if Docker Desktop is Running
+function check_for_docker_desktop(){
+    if [[ -n "$(docker info --format '{{.OperatingSystem}}' | grep 'Docker Desktop')" ]]; then
+        echo -e "${GREEN}\nDocker Desktop found....${NC}"
+    else
+        echo -e "${RED}\nWARNING! Docker Desktop not installed:${NC}"
+        echo -e "${YELLOW}  * Install docker desktop from <https://docs.docker.com/docker-for-mac/install/>\n${NC}"
+        exit 1
+    fi
+
+}
