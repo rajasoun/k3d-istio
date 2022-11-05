@@ -75,3 +75,8 @@ function get_ip_linux(){
     ip=$(ip route get 8.8.8.8 | sed -n '/src/{s/.*src *\([^ ]*\).*/\1/p;q}')
     echo "$ip"
 }
+
+# Pretty Print
+function pretty_print() {
+  printf "\n%b\n" "$1"
+}

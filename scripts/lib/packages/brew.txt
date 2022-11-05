@@ -1,0 +1,5 @@
+k3d 
+k9s 
+helm 
+kubectl 
+fetch

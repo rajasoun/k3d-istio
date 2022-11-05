@@ -4,6 +4,16 @@ SCRIPT_LIB_DIR="$(dirname "${BASH_SOURCE[0]}")"
 
 export CLUSTER_NAME=${CLUSTER_NAME:-"spike"}
 
+# Check if Mac
+function is_mac(){
+    if [[ $OSTYPE == "darwin"* ]]; then
+        echo -e "Darwin OS Detected"
+    else
+        echo -e "Darwin OS is required to Run brew"
+        exit 1
+    fi
+}
+
 function check_for_docker_desktop(){
     if [[ -n "$(docker info --format '{{.OperatingSystem}}' | grep 'Docker Desktop')" ]]; then
         echo -e "${GREEN}\nDocker Desktop found....${NC}"
@@ -15,9 +25,21 @@ function check_for_docker_desktop(){
 
 }
 
+function install_apps(){
+    pretty_print "Installing Package(s)..."
+    PACKAGES=$(cat ${SCRIPT_LIB_DIR}/packages/brew.txt)
+    brew install ${PACKAGES[@]}
+}
+
+function uninstall_apps(){
+    pretty_print "UnInstalling Package(s)..."
+    PACKAGES=$(cat ${SCRIPT_LIB_DIR}/packages/brew.txt)
+    brew uninstall ${PACKAGES[@]}
+}
+
 function setup(){
     check_for_docker_desktop
-    try brew install k3d k9s helm kubectl
+    try install_apps
     # try wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
     curl -sL https://istio.io/downloadIstioctl | sh -
     source "${SCRIPT_LIB_DIR}/lib/tools.sh"
@@ -26,7 +48,7 @@ function setup(){
 
 function teardown(){
     rm -fr $HOME/.istioctl
-    try brew uninstall k3d k9s helm kubectl
+    try uninstall_apps
     brew cleanup
     echo -e "${GREEN}Pre Requisites Teardown Installation Sucessfull${NC}"
 }
