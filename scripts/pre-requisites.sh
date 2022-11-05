@@ -6,13 +6,13 @@ export CLUSTER_NAME=${CLUSTER_NAME:-"spike"}
 
 function install_apps(){
     pretty_print "Installing Package(s)..."
-    PACKAGES=$(cat ${SCRIPT_LIB_DIR}/packages/brew.txt)
+    PACKAGES="$(cat scripts/lib/packages/brew.txt | sed 's/#.*$//')"
     brew install ${PACKAGES[@]}
 }
 
 function uninstall_apps(){
     pretty_print "UnInstalling Package(s)..."
-    PACKAGES=$(cat ${SCRIPT_LIB_DIR}/packages/brew.txt)
+    PACKAGES="$(cat scripts/lib/packages/brew.txt | sed 's/#.*$//')"
     brew uninstall ${PACKAGES[@]}
 }
 
