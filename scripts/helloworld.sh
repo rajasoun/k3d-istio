@@ -4,7 +4,7 @@ SCRIPT_LIB_DIR="$(dirname "${BASH_SOURCE[0]}")"
 # BASE_DIR="$(git rev-parse --show-toplevel)"
 # Reference: https://github.com/istio/istio/tree/master/samples/helloworld
 
-export RESOURCES_PATH="apps"
+export RESOURCES_PATH="apps/helloworld"
 source "scripts/lib/tools.sh"
 
 function setup(){

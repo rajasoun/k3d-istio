@@ -112,3 +112,20 @@ kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.15/samp
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.15/samples/addons/grafana.yaml
 kubectl apply -f https://raw.githubusercontent.com/istio/istio/master/samples/addons/jaeger.yaml
 ```
+
+## tekton 
+
+https://tekton.dev/ 
+
+```sh
+kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
+kubectl get pods --namespace tekton-pipelines --watch
+```
+
+### tektron dashboard 
+
+```sh
+kubectl apply --filename https://storage.googleapis.com/tekton-releases/dashboard/latest/tekton-dashboard-release.yaml
+kubectl get pods --namespace tekton-pipelines --watch
+kubectl port-forward -n tekton-pipelines service/tekton-dashboard 9097:9097
+```
