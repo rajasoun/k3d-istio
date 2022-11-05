@@ -103,3 +103,12 @@ Test App
 source scripts/lib/gateway.sh
 curl http://$GATEWAY_URL/hello
 ```
+
+
+## Monitoring 
+
+```sh
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.15/samples/addons/prometheus.yaml
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.15/samples/addons/grafana.yaml
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/master/samples/addons/jaeger.yaml
+```
