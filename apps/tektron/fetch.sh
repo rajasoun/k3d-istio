@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-fetch --repo https://github.com/tektoncd/plumbing --source-path=/hack --branch main tektron/hack
+GIT_BASE_PATH="$(git rev-parse --show-toplevel)"
+DESTINATION_PATH="${GIT_BASE_PATH}/apps/tektron/hack"
+fetch --repo https://github.com/tektoncd/plumbing --branch main --source-path=/hack  "${DESTINATION_PATH}"
