@@ -22,7 +22,7 @@ function setup(){
     try install_apps
     # try wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
     curl -sL https://istio.io/downloadIstioctl | sh -
-    source "${SCRIPT_LIB_DIR}/lib/tools.sh"
+    source "${SCRIPT_LIB_DIR}/tools.sh"
     echo -e "${GREEN}Pre Requisites Installation Sucessfull${NC}"
 }
 

@@ -7,4 +7,3 @@ tektoncd-cli    # https://github.com/tektoncd/cli
 kind            # https://kind.sigs.k8s.io/
 kustomize       # https://kustomize.io/
 kubectx         # https://github.com/ahmetb/kubectx
-podman          # https://podman.io
