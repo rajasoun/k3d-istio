@@ -6,7 +6,7 @@ export CLUSTER_NAME=${CLUSTER_NAME:-"spike"}
 
 # Reference: https://brettmostert.medium.com/k3d-kubernetes-istio-service-mesh-286a7ba3a64f
 
-source "$SCRIPT_LIB_DIR/tools.sh"
+source "$SCRIPT_LIB_DIR/lib/tools.sh"
 
 function setup(){
     istioctl x precheck 

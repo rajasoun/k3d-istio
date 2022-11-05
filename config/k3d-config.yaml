@@ -23,6 +23,12 @@ ports:
     nodeFilters:
       - loadbalancer
 
+registries: # define how registries should be created or used
+  create: # creates a default registry to be used with the cluster; same as `--registry-create registry.localhost`
+    name: registry.k3d.local
+    host: "0.0.0.0"
+    hostPort: "5001"
+
 options:
   k3d: # k3d runtime settings
     wait: true # wait for cluster to be usable before returining; same as `--wait` (default: true)
@@ -38,6 +44,9 @@ options:
       - arg: --disable=traefik
         nodeFilters:
           - server:*
+  kubeconfig:
+    updateDefaultKubeconfig: true # add new cluster to your default Kubeconfig; 
+    switchCurrentContext: true # also set current-context to the new cluster's context; 
 
   
 

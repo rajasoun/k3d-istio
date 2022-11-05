@@ -13,12 +13,12 @@ function setup(){
     rm /tmp/k3d-config.yaml
 
     add_host_entry "127.0.0.1" "k3d.local"
-    try source ${SCRIPT_LIB_DIR}/tools.sh
     
     # wait untill all pods are in Ready State
     try kubectl wait --for=condition=Ready pods --all -n kube-system
     # List Running Containers
     docker ps --format 'table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Ports}}'
+    try source ${SCRIPT_LIB_DIR}/tools.sh
     echo -e "${GREEN}k3d Installation Sucessfull${NC}"
 }
 
