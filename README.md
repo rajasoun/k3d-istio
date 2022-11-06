@@ -134,6 +134,7 @@ kubectl port-forward -n tekton-pipelines service/tekton-dashboard 9097:9097
 
 1. Istio service mesh included to replicate production setup
 1. Initially /etc/hosts was used for mapping custom domain names to 127.0.0.1 in Host OS. Now it is replaced with https://local.gd/
+1. Use tellerops teller fro AWS secrets Management in place of .env. Ref: https://github.com/tellerops/teller
 
 ### Under Evaluation 
 
