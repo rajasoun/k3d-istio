@@ -130,7 +130,11 @@ kubectl get pods --namespace tekton-pipelines --watch
 kubectl port-forward -n tekton-pipelines service/tekton-dashboard 9097:9097
 ```
 
-## Deprecated for better Tools 
+## Decision Logs 
 
-Initially /etc/hosts was used for mapping custom domain names to 127.0.0.1
-Now it is replaced with https://local.gd/
+1. Istio service mesh included to replicate production setup
+1. Initially /etc/hosts was used for mapping custom domain names to 127.0.0.1 in Host OS. Now it is replaced with https://local.gd/
+
+### Under Evaluation 
+
+1. Tektron fro CI/CD
