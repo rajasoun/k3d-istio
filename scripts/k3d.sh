@@ -13,8 +13,6 @@ function setup(){
     try k3d cluster create --registry-config <(cat config/registries.yaml | envsubst) --config  <(cat config/k3d-config.yaml | envsubst)
     export KUBECONFIG=$(k3d kubeconfig write $CLUSTER_NAME)
     echo "KUBECONFIG=${KUBECONFIG}"
-
-    add_host_entry "127.0.0.1" "k3d.local"
     
     # wait untill all pods are in Ready State
     try kubectl wait --for=condition=Ready pods --all -n kube-system
@@ -26,7 +24,6 @@ function setup(){
 
 function teardown(){
     try k3d cluster delete $CLUSTER_NAME
-    remove_host_entry "k3d.local"
     #try k3d cluster delete -a
 }
 

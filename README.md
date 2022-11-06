@@ -129,3 +129,8 @@ kubectl apply --filename https://storage.googleapis.com/tekton-releases/dashboar
 kubectl get pods --namespace tekton-pipelines --watch
 kubectl port-forward -n tekton-pipelines service/tekton-dashboard 9097:9097
 ```
+
+## Deprecated for better Tools 
+
+Initially /etc/hosts was used for mapping custom domain names to 127.0.0.1
+Now it is replaced with https://local.gd/
