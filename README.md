@@ -7,8 +7,6 @@ Deploy a local K3D Kubernetes development cluster that will use Istio as the ser
 1. **[Docker Desktop](https://www.docker.com/products/docker-desktop/)** is an easy-to-install application for your Mac, Linux, or Windows environment that enables you to build and share containerized applications and microservices.
 1. **[k3s](https://k3s.io/)** is a efficient and lightweight fully compliant Kubernetes distribution.
 1. **[k3d](https://k3d.io/)** is a utility designed to easily run k3s in Docker.It provides a simple CLI to create, run, delete a full compliance Kubernetes cluster with 0 to n worker nodes.
-1. **[kubectl](https://kubernetes.io/docs/tasks/tools/)** is Kubernetes command-line tool and allows to run commands against Kubernetes clusters. It provides a simple CLI to to deploy applications, inspect and manage cluster resources, and view logs. 
-1. **[helm](https://helm.sh/)** helps manage Kubernetes applications.Helm Charts helps to define, install, and upgrade even the most complex Kubernetes application.
 1. **[k9s](https://k9scli.io/)**  is a terminal based UI to interact with your Kubernetes clusters. It helps to make it easier to navigate, observe and manage deployed applications
 
 
