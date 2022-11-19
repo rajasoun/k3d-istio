@@ -1,11 +1,8 @@
-
 project: k3d-istio
 confirm: Are you sure you want to run on {{stage}}?
 
-
 # Set this if you want to carry over parent process' environment variables
-# carry_env: true 
-
+carry_env: true 
 
 #
 # Variables
@@ -17,7 +14,6 @@ opts:
   region: env:AWS_REGION    # you can get env variables with the 'env:' prefix, for default values if env not found use comma. Example: env:AWS_REGION,{DEFAULT_VALUE}
   stage: development
 
-
 #
 # Providers
 #
@@ -27,17 +23,6 @@ providers:
   aws_secretsmanager:
     env_sync:
       path: k3d/docker
-    env:
-      DOCKER_CREDENTIALS:
-        path: k3d/docker
-        field: DOCKER_CREDENTIALS
 
-  # # you can mix and match many files
-  # dotenv:
-  #   env_sync:
-  #     path: config/.env.{{stage}}
-  #   env:
-  #     DOCKER_CREDENTIALS:
-  #       path: config/.env.{{stage}}
-  #       field: DOCKER_CREDENTIALS
+
 
