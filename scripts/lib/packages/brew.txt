@@ -1,8 +1,5 @@
 k3d             # https://k3d.io/v5.4.6/
 k9s             # https://k9scli.io/
-helm            # https://helm.sh/
-kubectl         # https://kubernetes.io/docs/tasks/tools/
-fetch           # https://github.com/gruntwork-io/fetch
 tektoncd-cli    # https://github.com/tektoncd/cli
 kind            # https://kind.sigs.k8s.io/
 kustomize       # https://kustomize.io/
